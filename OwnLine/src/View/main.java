@@ -13,9 +13,7 @@ import java.util.Scanner;
 public class main {
     
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        
-        String intestazione = "\ncodiceProdotto | nomeProdotto | costo | quantita";
-        
+                
         //prendiamo il file che contiene i dati di ogni acquirente presso amazon
         BufferedReader br = new BufferedReader(new FileReader("prodottiDisponibili.csv"));
         BufferedWriter bw = new BufferedWriter(new FileWriter("prodotti.csv"));
@@ -68,8 +66,8 @@ public class main {
                 case "B":
                 {
                     
-                    //g1.visualizzaProdotti();
-                    g1.aggiornamentoArrayProdotti();
+                    g1.visualizzaProdotti();
+                    //g1.aggiornamentoArrayProdotti();
                     g1.getADisponibili();
                 }
             }

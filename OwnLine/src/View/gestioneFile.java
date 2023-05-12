@@ -17,11 +17,14 @@ public class gestioneFile {
     {
         BufferedReader br = new BufferedReader(new FileReader("prodottiDisponibili.csv"));
         String line;
-        String[] etichette = br.readLine().split(",");
+        String[] etichette = br.readLine().split(" , ");
+        System.out.println("\ncodiceProdotto | nomeProdotto | costo | quantita");
         
         while((line = br.readLine()) != null){
             System.out.println(line);
         }
+        System.out.println("\n");
+        aggiornamentoArrayProdotti();
     }
     
     public void aggiornamentoArrayProdotti() throws FileNotFoundException, IOException
@@ -30,11 +33,11 @@ public class gestioneFile {
 
         BufferedReader br = new BufferedReader(new FileReader("prodottiDisponibili.csv"));
         String line;
-        String[] etichette = br.readLine().split(",");
+        String[] etichette = br.readLine().split(" , ");
         
         while((line = br.readLine()) != null){
             //System.out.println(line);
-            String[] info = line.split(",");
+            String[] info = line.split(" , ");
             prodottiDisponibili p = new prodottiDisponibili(info[0], info[1], info[2], info[3]);
             ADisponibili.add(p);
 
