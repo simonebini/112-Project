@@ -57,7 +57,28 @@ public class gestioneFile {
         {
             if(ADisponibili.get(i).getNcodice()==cod) return true;
         }
-        return true;
+        return false;
+    }
+    
+    public boolean controlloQuantita(int quant, int cod) throws IOException
+    {
+        aggiornamentoArrayProdotti();
+        for(int i=0; i<(ADisponibili.size()); i++)
+        {
+            if(ADisponibili.get(i).getNcodice()==cod) 
+            {
+                if(quant<ADisponibili.get(i).getQuantita())
+                {
+                    int nuovaQuant;
+                    nuovaQuant = ADisponibili.get(i).getQuantita();
+                    nuovaQuant = nuovaQuant - quant;
+                    ADisponibili.get(i).setQuantita(nuovaQuant);
+                    return true;
+                }
+                
+            }
+        }
+        return false;        
     }
 
 

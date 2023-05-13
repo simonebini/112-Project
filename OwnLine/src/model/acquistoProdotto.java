@@ -27,6 +27,7 @@ public class acquistoProdotto {
                
         g1.getADisponibili();//visualizzazione prodotti disponibili per poi sceglierlo        
         
+        //controllo se il codice inserito è presente nel file prodotti disponibili
         int ncodice = 0;
         controllo = false;
         while(controllo==false)
@@ -37,8 +38,15 @@ public class acquistoProdotto {
         }
         this.n = ncodice;
         
-        System.out.print("Inserisci la quantita: ");
-        int quantita = sc.nextInt();
+        //inserimento della quantità voluta
+        int quantita = 0;
+        controllo = false;
+        while(controllo==false)
+        {
+            System.out.print("Inserisci la quantita: ");
+            quantita = sc.nextInt();
+            controllo=g1.controlloQuantita(quantita, this.n);
+        }
         this.q = quantita;
         
         System.out.print("Inserisci il metodo di pagamento: ");

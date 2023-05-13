@@ -49,13 +49,7 @@ public class main {
                 {
                     //inserimento dati riguardanti il nuovo acquisto e al suo acquirente
                     p1.aggiungiAcquisto();
-                    
-                    
-                    
-                    
-                   
-                    
-                    //calcolo di quanto spende pero fatto dal programma in futuro
+                    g1.getADisponibili();
                     break;
                 }
                 case "B":

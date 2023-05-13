@@ -19,6 +19,10 @@ public class prodottiDisponibili {
        this.quantita = parseInt(d);
     }
 
+    public void setQuantita(int quantita) {
+        this.quantita = quantita;
+    }
+
     public int getNcodice() {
         return ncodice;
     }
