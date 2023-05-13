@@ -1,6 +1,7 @@
 
 package View;
 
+import Controller.gestoreAcquisti;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -9,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import model.acquistoProdotto;
 
 public class main {
     
@@ -20,6 +22,8 @@ public class main {
         //ArrayList<prodottiDisponibili> arrayProdotti = new ArrayList<>();
         //ArrayList<prova> listaClienti = new ArrayList<>();
         
+        acquistoProdotto acq1 = new acquistoProdotto();
+        gestoreAcquisti p1 = new gestoreAcquisti();
         gestioneFile g1 = new gestioneFile();
         Scanner sc = new Scanner(System.in);
         
@@ -44,31 +48,23 @@ public class main {
                 case "A":
                 {
                     //inserimento dati riguardanti il nuovo acquisto e al suo acquirente
-                    System.out.print("Inserisci la tua email: ");
-                    String email = sc.nextLine();
-                    System.out.print("Inserisci il tuo indirizzo: ");
-                    String indirizzo = sc.nextLine();
-                    
-                    g1.visualizzaProdotti();
+                    p1.aggiungiAcquisto();
                     
                     
                     
-                    System.out.print("Inserisci il codice del prodotto: ");
-                    String ncodice = sc.nextLine(); 
-                    System.out.print("Inserisci la quantita: ");
-                    int quantita = sc.nextInt();
-                    System.out.print("Inserisci il metodo di pagamento: ");
-                    String metodoPagamento = sc.nextLine();
+                    
+                   
                     
                     //calcolo di quanto spende pero fatto dal programma in futuro
-                    
+                    break;
                 }
                 case "B":
                 {
                     
-                    g1.visualizzaProdotti();
+                    //g1.visualizzaProdotti();
                     //g1.aggiornamentoArrayProdotti();
                     g1.getADisponibili();
+                    break;
                 }
             }
             

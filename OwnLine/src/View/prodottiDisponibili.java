@@ -37,7 +37,7 @@ public class prodottiDisponibili {
 
     @Override
     public String toString() {
-        return "prodottiDisponibili{" + "ncodice=" + ncodice + ", quantita=" + quantita + ", nome=" + nome + ", costo=" + costo + '}';
+        return  ncodice + " , " + nome + " , " + costo + " , " + quantita;
     }
     
     

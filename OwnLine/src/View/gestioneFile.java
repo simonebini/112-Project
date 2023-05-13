@@ -29,8 +29,6 @@ public class gestioneFile {
     
     public void aggiornamentoArrayProdotti() throws FileNotFoundException, IOException
     {
-        
-
         BufferedReader br = new BufferedReader(new FileReader("prodottiDisponibili.csv"));
         String line;
         String[] etichette = br.readLine().split(" , ");
@@ -40,17 +38,26 @@ public class gestioneFile {
             String[] info = line.split(" , ");
             prodottiDisponibili p = new prodottiDisponibili(info[0], info[1], info[2], info[3]);
             ADisponibili.add(p);
-
-                
-            
         }
     }
 
-    public void getADisponibili() {
+    public void getADisponibili() throws IOException {
+        aggiornamentoArrayProdotti();
+        System.out.println("\ncodiceProdotto | nomeProdotto | costo | quantita");
         for(int i=0; i<(ADisponibili.size()); i++)
         {
             System.out.println(ADisponibili.get(i).toString());
         }
+    }
+    
+    public boolean controlloCodice(int cod) throws IOException
+    {
+        aggiornamentoArrayProdotti();
+        for(int i=0; i<(ADisponibili.size()); i++)
+        {
+            if(ADisponibili.get(i).getNcodice()==cod) return true;
+        }
+        return true;
     }
 
 
