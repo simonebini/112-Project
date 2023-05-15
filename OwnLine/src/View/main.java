@@ -49,10 +49,10 @@ public class main {
                 {
                     //inserimento dati riguardanti il nuovo acquisto e al suo acquirente
                     p1.aggiungiAcquisto();
-                    g1.getADisponibili();
+                    //calcolo di quanto spende pero fatto dal programma in futuro
                     break;
                 }
-                case "B":
+                case "P":
                 {
                     
                     //g1.visualizzaProdotti();

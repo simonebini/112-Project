@@ -13,6 +13,7 @@ public class gestioneFile {
 
     private String nome = "prodottiDisponibili.csv"; 
     
+    //visualizzazione prodotti attraverso il file
     public void visualizzaProdotti() throws IOException
     {
         BufferedReader br = new BufferedReader(new FileReader("prodottiDisponibili.csv"));
@@ -24,10 +25,10 @@ public class gestioneFile {
             System.out.println(line);
         }
         System.out.println("\n");
-        aggiornamentoArrayProdotti();
     }
     
-    public void aggiornamentoArrayProdotti() throws FileNotFoundException, IOException
+    //aggiorna l'arraylist con i dati contenuti nel file
+    public void aggiornamentoProdottiArray() throws FileNotFoundException, IOException
     {
         BufferedReader br = new BufferedReader(new FileReader("prodottiDisponibili.csv"));
         String line;
@@ -40,19 +41,27 @@ public class gestioneFile {
             ADisponibili.add(p);
         }
     }
+    
+    public void aggiornamentoProdottiFile()
+    {
+        
+    }
 
+    //ci permette di visualizzare il vettore contenente tutti i prodotti disponibili che possono esser acquistati
     public void getADisponibili() throws IOException {
-        aggiornamentoArrayProdotti();
+        aggiornamentoProdottiArray();
         System.out.println("\ncodiceProdotto | nomeProdotto | costo | quantita");
         for(int i=0; i<(ADisponibili.size()); i++)
         {
             System.out.println(ADisponibili.get(i).toString());
         }
+        System.out.println("");
     }
     
+    //ci permette di controllare se il codice inserito coincide con uno presente nella lista prodotti disponibili
     public boolean controlloCodice(int cod) throws IOException
     {
-        aggiornamentoArrayProdotti();
+        aggiornamentoProdottiArray();
         for(int i=0; i<(ADisponibili.size()); i++)
         {
             if(ADisponibili.get(i).getNcodice()==cod) return true;
@@ -60,33 +69,69 @@ public class gestioneFile {
         return false;
     }
     
-    public boolean controlloQuantita(int quant, int cod) throws IOException
+    //ci permette di controllare la quantita inserita durante il nostro acquisto
+    public boolean controlloQuantita(int cod, int quant) throws IOException
     {
-        aggiornamentoArrayProdotti();
+        aggiornamentoProdottiArray();
         for(int i=0; i<(ADisponibili.size()); i++)
         {
-            if(ADisponibili.get(i).getNcodice()==cod) 
+            if(ADisponibili.get(i).getNcodice()==cod)
             {
-                if(quant<ADisponibili.get(i).getQuantita())
+                if(quant<=ADisponibili.get(i).getQuantita())
                 {
-                    int nuovaQuant;
-                    nuovaQuant = ADisponibili.get(i).getQuantita();
-                    nuovaQuant = nuovaQuant - quant;
-                    ADisponibili.get(i).setQuantita(nuovaQuant);
                     return true;
                 }
-                
             }
         }
-        return false;        
+        return false;
     }
-
-
+    
+    //ci permette di trovare il prezzo di un prodotto (utilizzata per calcolare la spesa totale)
+    public double trovaPrezzo(int cod) throws IOException
+    {
+        aggiornamentoProdottiArray();
+        for(int i=0; i<(ADisponibili.size()); i++)
+        {
+            if(ADisponibili.get(i).getNcodice()==cod)
+            {
+                return ADisponibili.get(i).getCosto();
+            }
+        }
+        return 0;
+    }
+    
+    public void aggioramentoDatiFileArray(int cod, int quant) throws IOException
+    {
+        aggiornamentoProdottiArray();
+        for(int i=0; i<(ADisponibili.size()); i++)
+        {
+            if(ADisponibili.get(i).getNcodice()==cod)
+            {
+                int supporto = ADisponibili.get(i).getQuantita();
+                ADisponibili.get(i).setQuantita(supporto-quant);
+            }
+        }
+        
+        BufferedWriter br = new BufferedWriter(new FileWriter("provaPratica.csv"));
+        
+        br.write("codice , nome , costo , quantita");
+        br.close();
+        
+        
+        
+            
+        
+        
+        
+        
+        
+        
+        
+             
+    }
     
     
 
-    
-    
-    
+
     
 }
