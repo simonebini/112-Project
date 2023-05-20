@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import model.acquistoProdotto;
-
+import model.visuaAcquisti;
 public class main {
     
     public static void main(String[] args) throws FileNotFoundException, IOException {
@@ -24,6 +24,7 @@ public class main {
         //ArrayList<prova> listaClienti = new ArrayList<>();
         
         acquistoProdotto acq1 = new acquistoProdotto();
+        visuaAcquisti vac1 = new visuaAcquisti();
         gestoreAcquisti p1 = new gestoreAcquisti();
         gestioneFile g1 = new gestioneFile();
         Scanner sc = new Scanner(System.in);
@@ -41,17 +42,22 @@ public class main {
             System.out.println("P - visualizza i prodotti che puoi acquistare");
             System.out.println(" ");
             System.out.print("Inserisci la tua scelta: ");
-            String choose = sc.nextLine();
-            choose.toUpperCase();
+            String choose = sc.nextLine().toLowerCase();
             System.out.println(" ");
             
+                    
             switch(choose)
-            {
+            {       
                 case "a":
                 {
                     //inserimento dati riguardanti il nuovo acquisto e al suo acquirente
                     p1.aggiungiAcquisto();
                     //calcolo di quanto spende pero fatto dal programma in futuro
+                    break;
+                }
+                case "v":
+                {
+                    
                     break;
                 }
                 case "p":
