@@ -37,9 +37,11 @@ public class main {
 
         while(true)
         {
+            System.out.println("-----------------------------------------------");
             System.out.println("A - acquista un nuovo prodotto");
             System.out.println("V - visualizza i prodotti che hai acquistato");
             System.out.println("P - visualizza i prodotti che puoi acquistare");
+            System.out.println("-----------------------------------------------");
             System.out.println(" ");
             System.out.print("Inserisci la tua scelta: ");
             String choose = sc.nextLine().toLowerCase();
@@ -55,15 +57,12 @@ public class main {
                     //calcolo di quanto spende pero fatto dal programma in futuro
                     break;
                 }
-                
                 case "v":
                 {
                     
                     break;
                 }
-
                 case "p":
-
                 {
                     
                     //g1.visualizzaProdotti();

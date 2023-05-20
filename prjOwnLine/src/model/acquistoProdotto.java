@@ -35,7 +35,6 @@ public class acquistoProdotto {
         return matcher.matches(); //restituisce true se va bene oppure false se non va bene
     }
 
-    
     public void inserisciIndirizzo() {
         System.out.print("Inserisci il tuo indirizzo: ");
         String indirizzo = sc.nextLine();
@@ -85,7 +84,6 @@ public class acquistoProdotto {
         return expirationDate.matches("^(0[1-9]|1[0-2])/\\d{2}$");
     }
 
-
     public void selezionaProdotto() throws IOException {
         g1.getADisponibili(); // visualizzazione prodotti disponibili per poi sceglierlo
 
@@ -104,32 +102,32 @@ public class acquistoProdotto {
                 }
             } else {
                 System.out.println("!ERRORE! Inserisci un codice valido:");
-                sc.next(); // Consuma l'input non valido per evitare il blocco
+                varControllo = sc.nextInt();
             }   
         }
         this.n = varControllo;
     }
 
-    
     public void inserisciQuantita() throws IOException {
         // Inseriamo la quantita
         controllo = false;
-        while(!controllo) {
-            System.out.print("Inserisci la quantita: ");
-            int varControllo = sc.nextInt();
-            controllo = g1.controlloQuantita(this.n, varControllo);
-            
-            if (!controllo) {
-                System.out.println("!ERRORE! Quantità non disponibile. Riprova.");
-            } else if (varControllo <= 0) {
-                System.out.println("!ERRORE! Inserisci una quantità valida (maggiore di zero).");
-                controllo = false;
+        System.out.print("Inserisci la quantita: ");
+        int varControllo = sc.nextInt();
+
+        while (!controllo) {
+            if (varControllo <= 0) {
+                System.out.println("!ERRORE! Inserisci una quantità valida:");
+                varControllo = sc.nextInt();
+            } else if (!g1.controlloQuantita(this.n, varControllo)) {
+                System.out.println("!ERRORE! Quantità non disponibile:");
+                varControllo = sc.nextInt();
             } else {
                 this.q = varControllo;
+                controllo = true;
             }
         }
     }
-    
+
     public void calcolaSpesa() throws IOException {
         // Calcolo spesa
         this.spesa = q * g1.trovaPrezzo(this.n);
