@@ -27,6 +27,10 @@ public class prodottiDisponibili {
         return quantita;
     }
 
+    public void setQuantita(int quantita) {
+        this.quantita = quantita;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -39,11 +43,5 @@ public class prodottiDisponibili {
     public String toString() {
         return  ncodice + " , " + nome + " , " + costo + " , " + quantita;
     }
-    
-    
-
-   
-    
-    
-    
+ 
 }

@@ -1,6 +1,7 @@
 
 package View;
 
+import Controller.gestioneFile;
 import Controller.gestoreAcquisti;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -40,25 +41,20 @@ public class main {
             System.out.println("P - visualizza i prodotti che puoi acquistare");
             System.out.println(" ");
             System.out.print("Inserisci la tua scelta: ");
-            String choose = sc.nextLine(); 
+            String choose = sc.nextLine();
+            choose.toUpperCase();
             System.out.println(" ");
             
             switch(choose)
             {
-                case "A":
+                case "a":
                 {
                     //inserimento dati riguardanti il nuovo acquisto e al suo acquirente
                     p1.aggiungiAcquisto();
-                    
-                    
-                    
-                    
-                   
-                    
                     //calcolo di quanto spende pero fatto dal programma in futuro
                     break;
                 }
-                case "B":
+                case "p":
                 {
                     
                     //g1.visualizzaProdotti();
@@ -69,13 +65,6 @@ public class main {
             }
             
         }
-        
-       
-        
-        
-       
-        
-        
     }
 }
         
