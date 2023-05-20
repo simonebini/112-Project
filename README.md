@@ -12,6 +12,7 @@ Questo progetto consiste nello sviluppo di un negozio online denominato "Ownline
 
 Obbiettivi:
 - Completare tutti i punti prefissati:
+- 
          - 'A' -> ✓
          - 'V' -> ✓
          - 'P' -> X
