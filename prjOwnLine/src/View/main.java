@@ -59,7 +59,9 @@ public class main {
                 }
                 case "v":
                 {
-                    
+                    System.out.print("Inserisci l'email dell'acquirente: ");
+                    String email = sc.nextLine();
+                    p1.visualizzaAcquistiPerEmail(email);
                     break;
                 }
                 case "p":

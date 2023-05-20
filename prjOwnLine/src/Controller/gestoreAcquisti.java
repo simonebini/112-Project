@@ -23,5 +23,15 @@ public class gestoreAcquisti {
         System.out.println("");
         
         vettore.add(p);
-    }  
+    }
+    
+    public void visualizzaAcquistiPerEmail(String email) {
+    System.out.println("Acquisti effettuati da " + email + ":");
+    for (acquistoProdotto acquisto : vettore) {
+        if (acquisto.getEmail().equals(email)) {
+            System.out.println(acquisto);
+        }
+    }
+    System.out.println("");
+}
 }
