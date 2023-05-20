@@ -11,6 +11,10 @@ Questo progetto consiste nello sviluppo di un negozio online denominato "Ownline
 3. Per la scelta "visualizza i prodotti che puoi acquistare", il programma consente di visualizzare i prodotti rimanente all'interno dello shop online e, di conseguenza, permette di acquistarli.
 
 Obbiettivi:
+- Completare tutti i punti prefissati:
+         - 'A' -> ✓
+         - 'V' -> ✓
+         - 'P' -> X
 - Organizzare in modo efficente i package: ✓
 - Aggiungere i controlli per i campi di input da parte dell'utente: ✓
 - Implementare la lettura da file: ✓
