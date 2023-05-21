@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class acquistoProdotto {
     
-    private String e, i, m;
+    private String e, i, m, c, d;
     private int n, q;
     private double spesa;
     private boolean controllo = false;
@@ -18,25 +18,27 @@ public class acquistoProdotto {
     gestioneFile g1 = new gestioneFile();
     Scanner sc = new Scanner(System.in);
     
-    public acquistoProdotto()
-    {  
+    public acquistoProdotto() {
+        
     }
     
-    public acquistoProdotto(String email, String indirizzo, String mPagamento, String codProdotto, String quantita, String spesa)
+    public acquistoProdotto(String email, String indirizzo, String mCarta, String cCvv, String dData, String codProdotto, String quantita, String spesa)
     {
         this.e = email;
         this.i = indirizzo;
-        this.m = mPagamento;
+        this.m = mCarta;
+        this.c = cCvv;
+        this.d = dData;
         this.n = parseInt(codProdotto);
         this.q = parseInt(quantita);
         this.spesa = parseDouble(spesa);
     }
-    
+
     @Override
     public String toString() {
-        return e + " , " + i + " , " + m + " , " + n + " , " + q + " , " + spesa;
+        return e + " , " + i + " , " + m + " , " + c + " , " + d + " , " + n + " , " + q + " , " + spesa;
     }
-    
+
     //----------------------------------------------------------------------------------
     //inserimento email
     public void inserisciEmail() {
@@ -69,30 +71,39 @@ public class acquistoProdotto {
     }
     
     //inserimento codice di pagamento
-    public void inserisciMetodoPagamento() {
+    public void inserisciNumeroCarta() {
         System.out.print("Inserisci il numero della carta di credito: ");
-        String mPagamento = sc.nextLine();
-        while (!isValidCreditCardNumber(mPagamento)) {
+        String mCarta = sc.nextLine();
+        while (!isValidCreditCardNumber(mCarta)) {
             System.out.print("!ERRORE! Inserisci un numero di carta di credito valido: ");
-            mPagamento = sc.nextLine();
+            mCarta = sc.nextLine();
         }
-        this.m = mPagamento;
-
+        this.m = mCarta;
+    }
+    
+    public void inserisciCvvCarta() {
+        
         //inserimento del CVV
         System.out.print("Inserisci il CVV: ");
-        String cvv = sc.nextLine();
-        while (!isValidCVV(cvv)) {
+        String cCvv = sc.nextLine();
+        while (!isValidCVV(cCvv)) {
             System.out.print("!ERRORE! Inserisci un CVV valido (3 cifre): ");
-            cvv = sc.nextLine();
+            cCvv = sc.nextLine();
         }
-
+        this.c = cCvv;
+    }
+    
+    public void inserisciDataCarta() {
+        
         //inserimento del MM/YY
         System.out.print("Inserisci la data di scadenza (MM/YY): ");
-        String dataScadenza = sc.nextLine();
-        while (!isValidExpirationDate(dataScadenza)) {
+        String dData = sc.nextLine();
+        while (!isValidExpirationDate(dData)) {
             System.out.print("!ERRORE! Inserisci una data di scadenza valida (formato MM/YY): ");
-            dataScadenza = sc.nextLine();
+            dData = sc.nextLine();
         }
+        
+        this.d = dData;
     }
 
     //-------------------------------------------------------------------------------------------------------

@@ -22,7 +22,9 @@ public class gestoreAcquisti {
         
         p.inserisciEmail();
         p.inserisciIndirizzo();
-        p.inserisciMetodoPagamento();
+        p.inserisciNumeroCarta();
+        p.inserisciCvvCarta();
+        p.inserisciDataCarta();
         p.selezionaProdotto();
         p.inserisciQuantita();
         p.calcolaSpesa();
@@ -62,7 +64,7 @@ public class gestoreAcquisti {
         
         while((line = br.readLine()) != null){
             String[] info = line.split(" , ");
-            acquistoProdotto p = new acquistoProdotto(info[0], info[1], info[2], info[3], info[4], info[5]);
+            acquistoProdotto p = new acquistoProdotto(info[0], info[1], info[2], info[3], info[4], info[5], info[6], info[7]);
             vettore.add(p);
         }
     }
