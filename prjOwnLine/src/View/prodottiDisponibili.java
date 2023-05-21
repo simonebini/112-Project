@@ -10,7 +10,6 @@ public class prodottiDisponibili {
     private String nome;
     private double costo;
     
-    
     public prodottiDisponibili(String a, String b, String c, String d)
     {
        this.ncodice = parseInt(a);
@@ -43,5 +42,7 @@ public class prodottiDisponibili {
     public String toString() {
         return  ncodice + " , " + nome + " , " + costo + " , " + quantita;
     }
+
+    
  
 }

@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import model.acquistoProdotto;
-import model.visuaAcquisti;
 public class main {
     
     public static void main(String[] args) throws FileNotFoundException, IOException {
@@ -23,8 +22,6 @@ public class main {
         //ArrayList<prodottiDisponibili> arrayProdotti = new ArrayList<>();
         //ArrayList<prova> listaClienti = new ArrayList<>();
         
-        acquistoProdotto acq1 = new acquistoProdotto();
-        visuaAcquisti vac1 = new visuaAcquisti();
         gestoreAcquisti p1 = new gestoreAcquisti();
         gestioneFile g1 = new gestioneFile();
         Scanner sc = new Scanner(System.in);
@@ -32,9 +29,6 @@ public class main {
         //--------------------------------------------------------------------------------
       
         
-        //aggiorno l'array contenente tutti i prodotti disponibili
-        
-
         while(true)
         {
             System.out.println("-----------------------------------------------");
@@ -54,14 +48,13 @@ public class main {
                 {
                     //inserimento dati riguardanti il nuovo acquisto e al suo acquirente
                     p1.aggiungiAcquisto();
-                    //calcolo di quanto spende pero fatto dal programma in futuro
+                    
                     break;
                 }
                 case "v":
                 {
-                    System.out.print("Inserisci l'email dell'acquirente: ");
-                    String email = sc.nextLine();
-                    p1.visualizzaAcquistiPerEmail(email);
+                    //metodo per vedere i prodotti acquistati
+                    p1.getAcquisti();
                     break;
                 }
                 case "p":
