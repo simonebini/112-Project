@@ -1,7 +1,7 @@
-# OwnLine
-OwnLine - Simone Bini, Davide Padurean
+# Ammuniton
+Ammuniton - Simone Bini, Davide Padurean
 
-Questo progetto consiste nello sviluppo di un negozio online denominato "Ownline" che permette all'utente di scegliere tra 3 opzioni di interazione (acquistare un nuovo prodotto, visualizza i prodotti che sono stati acquistati e visualizzare i prodotti che si possono ancora acquistare).
+Questo progetto consiste nello sviluppo di un negozio online denominato "Ammuniton" che permette all'utente di scegliere tra 3 opzioni di interazione (acquistare un nuovo prodotto, visualizza i prodotti che sono stati acquistati e visualizzare i prodotti che si possono ancora acquistare).
 
 1. Per la scelta "acquistare un nuovo prodotto" il programma prevede che l'utente inserisca le sue informazioni personali quali email, indirizzo di residenza e le informazioni della carta di credito.
     Successivamente prevede che l'utente inserisca il codice del prodotto che vuole acquistare con la relativa quantià per effettuare correttamente l'acquisto,
