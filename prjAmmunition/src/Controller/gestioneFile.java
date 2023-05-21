@@ -17,6 +17,7 @@ public class gestioneFile {
     //visualizzazione prodotti attraverso il file
     public void visualizzaProdotti() throws IOException
     {
+        this.messaggio = "Codice         Nome       Costo   Quantità\n\n";
         BufferedReader br = new BufferedReader(new FileReader("prodottiDisponibili.csv"));
         String line;
         String[] etichette = br.readLine().split(" , ");

@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class acquistoProdotto {
     
-    private String e, i, m, c, d;
+    private String i, m;
     private int n, q;
     private double spesa;
     private boolean controllo = false;
@@ -18,95 +18,55 @@ public class acquistoProdotto {
     gestioneFile g1 = new gestioneFile();
     Scanner sc = new Scanner(System.in);
     
-    public acquistoProdotto() {
-        
+    public acquistoProdotto()
+    {  
     }
     
-    public acquistoProdotto(String email, String indirizzo, String mCarta, String cCvv, String dData, String codProdotto, String quantita, String spesa)
+    public acquistoProdotto(String indirizzo, String mPagamento, String codProdotto, String quantita, String spesa)
     {
-        this.e = email;
         this.i = indirizzo;
-        this.m = mCarta;
-        this.c = cCvv;
-        this.d = dData;
+        this.m = mPagamento;
         this.n = parseInt(codProdotto);
         this.q = parseInt(quantita);
         this.spesa = parseDouble(spesa);
     }
-
+    
     @Override
     public String toString() {
-        return e + " , " + i + " , " + m + " , " + c + " , " + d + " , " + n + " , " + q + " , " + spesa;
+        return i + " , " + m + " , " + n + " , " + q + " , " + spesa;
     }
 
     //----------------------------------------------------------------------------------
-    //inserimento email
-    public void inserisciEmail() {
-        System.out.print("Inserisci la tua email: ");
-        String email = sc.nextLine();
-        while (!isValidEmail(email)) {
-            System.out.print("!ERRORE! Inserisci una mail valida: ");
-            email = sc.nextLine();
-        }
-        this.e = email;
-    }
-
-    //controllo email se è valida 
-    private boolean isValidEmail(String email) {
-        String check = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-        Pattern pattern = Pattern.compile(check); //passiamo come parametro la mail per effettuare la corrispondenza
-        Matcher matcher = pattern.matcher(email); //controlliamo che la mail abbia questa corrispondenza
-        return matcher.matches(); //restituisce true se va bene oppure false se non va bene
-    }
-
-    //inserimento indirizzo
-    public void inserisciIndirizzo() {
-        System.out.print("Inserisci il tuo indirizzo: ");
-        String indirizzo = sc.nextLine();
-        while(indirizzo.isEmpty()) {
-            System.out.print("!ERRORE! Inserisci un indirizzo valido: ");
-            indirizzo = sc.nextLine();
+    //controllo indirizzo
+    public boolean controlloIndirizzo(String indirizzo) {
+        if(indirizzo.isEmpty()) {
+            return false;
         }
         this.i = indirizzo;
+        return true;
     }
     
-    //inserimento codice di pagamento
-    public void inserisciNumeroCarta() {
-        System.out.print("Inserisci il numero della carta di credito: ");
-        String mCarta = sc.nextLine();
-        while (!isValidCreditCardNumber(mCarta)) {
-            System.out.print("!ERRORE! Inserisci un numero di carta di credito valido: ");
-            mCarta = sc.nextLine();
+    //----------------------------------------------------------------------------------
+    //controllo metodo di pagamento
+    public boolean inserisciMetodoPagamento(String codPagamento, String cvv, String dataScadenza) {
+        if(!isValidCreditCardNumber(codPagamento)) {
+            return false;
         }
-        this.m = mCarta;
-    }
-    
-    public void inserisciCvvCarta() {
-        
-        //inserimento del CVV
-        System.out.print("Inserisci il CVV: ");
-        String cCvv = sc.nextLine();
-        while (!isValidCVV(cCvv)) {
-            System.out.print("!ERRORE! Inserisci un CVV valido (3 cifre): ");
-            cCvv = sc.nextLine();
-        }
-        this.c = cCvv;
-    }
-    
-    public void inserisciDataCarta() {
-        
-        //inserimento del MM/YY
-        System.out.print("Inserisci la data di scadenza (MM/YY): ");
-        String dData = sc.nextLine();
-        while (!isValidExpirationDate(dData)) {
-            System.out.print("!ERRORE! Inserisci una data di scadenza valida (formato MM/YY): ");
-            dData = sc.nextLine();
-        }
-        
-        this.d = dData;
-    }
 
-    //-------------------------------------------------------------------------------------------------------
+        //inserimento del CVV
+        if(!isValidCVV(cvv)) {
+            return false;
+        }
+
+        //inserimento del MM/YY
+        if(!isValidExpirationDate(dataScadenza)) {
+            return false;
+        }
+        
+        this.m = codPagamento;
+        return true;
+    }
+    
     //controlli se il codice della carta è giusto
     private boolean isValidCreditCardNumber(String cardNumber) {
         // Controlla se il numero di carta di credito ha esattamente 10 cifre numeriche
@@ -125,52 +85,33 @@ public class acquistoProdotto {
         return expirationDate.matches("^(0[1-9]|1[0-2])/\\d{2}$");
     }
     
-    //selezionamento del prodotto dopo aver visualizzato i prodotti disponibili
-    public void selezionaProdotto() throws IOException {
+    
+    //----------------------------------------------------------------------------------
+    //controllo codice prodotto
+    public boolean controlloProdotto(int varControllo) throws IOException {
         g1.getADisponibili(); // visualizzazione prodotti disponibili per poi sceglierlo
-
-        // Controllo se il codice inserito coincide con uno presente
-        int varControllo = 0;
-        controllo = false;
-
-        System.out.print("Inserisci il codice del prodotto: ");
-        while (!controllo) {
-            if (sc.hasNextInt()) { // Controlla se l'input è un intero
-                varControllo = sc.nextInt();
-                controllo = g1.controlloCodice(varControllo);
-
-                if (!controllo) {
-                    System.out.print("!ERRORE! Inserisci un codice valido: ");
-                }
-            } else {
-                System.out.print("!ERRORE! Inserisci un codice valido: ");
-                varControllo = sc.nextInt();
-            }   
+        
+        if(g1.controlloCodice(varControllo))
+        {
+            this.n = varControllo;
+            return true;
         }
-        this.n = varControllo;
+        return false;
     }
+   
+    //-------------------------------------------------------------------------------------------------------
+    //controllo la quantita
+    public boolean controlloQuantitaInserita(int varControllo) throws IOException {
 
-    //inserisci la quantita desiderata
-    public void inserisciQuantita() throws IOException {
-        // Inseriamo la quantita
-        controllo = false;
-        System.out.print("Inserisci la quantita: ");
-        int varControllo = sc.nextInt();
-
-        while (!controllo) {
-            if (varControllo <= 0) {
-                System.out.print("!ERRORE! Inserisci una quantita valida: ");
-                varControllo = sc.nextInt();
-            } else if (!g1.controlloQuantita(this.n, varControllo)) {
-                System.out.print("!ERRORE! Quantita non disponibile: ");
-                varControllo = sc.nextInt();
-            } else {
-                this.q = varControllo;
-                controllo = true;
-            }
-        }
+        //controlli se il numero inserito e negativo o maggiore rispetto a quello disponibile
+        if (varControllo <= 0) return false;
+        if (!g1.controlloQuantita(this.n, varControllo)) return false;
+            
+        this.q = varControllo;        
+        return true;
     }
     
+    //-------------------------------------------------------------------------------------------------------
     //calcolo della spesa che abbiamo sostenuto
     public void calcolaSpesa() throws IOException {
         // Calcolo spesa
@@ -178,14 +119,11 @@ public class acquistoProdotto {
         System.out.println("");
     }
     
+    //-------------------------------------------------------------------------------------------------------
     //aggiorniamo i dati presenti nell'array e nel file dei prodotti disponibili
     public void aggiornamentoDati() throws IOException {
         // Funzione che aggiorna i dati dell'arraylist e del file dei prodotti disponibili
         g1.aggioramentoDatiFileArray(this.n, this.q);
-    }
-
-    public String getEmail() {
-        return e;
     }
 
     public String getIndirizzo() {

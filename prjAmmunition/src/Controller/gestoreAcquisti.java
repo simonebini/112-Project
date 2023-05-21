@@ -7,35 +7,35 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import model.acquistoProdotto;
 
 public class gestoreAcquisti {
     
+    private String messaggio = "";
     gestioneFile g1 = new gestioneFile();
     ArrayList<acquistoProdotto> vettore = new ArrayList<>();
-    
-    //metodo per il controllo è le chiamate per i vari controlli sui dati inseriti
-    public void aggiungiAcquisto() throws IOException {
-        //creazione oggetto per chiamare i vari controlli e inserimenti
+       
+
+    public boolean aggiungiAcquisto(String indirizzo, String mCodCarta, String cvv, String data, String nCodice, String quantita ) throws IOException
+    {
         acquistoProdotto p = new acquistoProdotto();
+        if(!p.controlloIndirizzo(indirizzo)) return false;
         
-        p.inserisciEmail();
-        p.inserisciIndirizzo();
-        p.inserisciNumeroCarta();
-        p.inserisciCvvCarta();
-        p.inserisciDataCarta();
-        p.selezionaProdotto();
-        p.inserisciQuantita();
+        if(!p.inserisciMetodoPagamento(mCodCarta, cvv, data)) return false;
+        
+        int supp1 = parseInt(nCodice);
+        if(!p.controlloProdotto(supp1)) return false;
+        
+        int supp2 = parseInt(quantita);
+        if(!p.controlloQuantitaInserita(supp2)) return false;
+        
         p.calcolaSpesa();
-        p.aggiornamentoDati();
+        g1.aggioramentoDatiFileArray(supp1, supp2);
         
-        System.out.println("Grazie per l'acquisto! Ecco il reso conto:");
-        System.out.println(p);
-        System.out.println("");
-        
-        //aggiungo il tutto al vettore
         aggioramentoAcqFile(p);
+        return true;
     }
     
     //aggiunta del nuovo acquisto al file
@@ -44,7 +44,7 @@ public class gestoreAcquisti {
         aggiornamentoAcqArray();
         vettore.add(p);
         BufferedWriter br = new BufferedWriter(new FileWriter("prodottiAcquistati.csv"));
-        br.write("email , indirizzo , codCarta , codiceProdotto , quantita , spesa");  
+        br.write("indirizzo , codCarta , codiceProdotto , quantita , spesa");  
         
         for(int i=0; i<(vettore.size()); i++)
         {
@@ -64,7 +64,7 @@ public class gestoreAcquisti {
         
         while((line = br.readLine()) != null){
             String[] info = line.split(" , ");
-            acquistoProdotto p = new acquistoProdotto(info[0], info[1], info[2], info[3], info[4], info[5], info[6], info[7]);
+            acquistoProdotto p = new acquistoProdotto(info[0], info[1], info[2], info[3], info[4]);
             vettore.add(p);
         }
     }
@@ -72,13 +72,15 @@ public class gestoreAcquisti {
     //visualizzazione prodotti attraverso il file
     public void visualizzaProdottiFile() throws IOException
     {
+        this.messaggio = "Indirizzo              Carta            Codice      Quantità   Spesa\n\n";
         BufferedReader br = new BufferedReader(new FileReader("prodottiAcquistati.csv"));
         String line;
         String[] etichette = br.readLine().split(" , ");
-        System.out.println("email , indirizzo , codCarta , codiceProdotto , quantita , spesa");
+        System.out.println("indirizzo , codCarta , codiceProdotto , quantita , spesa");
         
         while((line = br.readLine()) != null){
             System.out.println(line);
+            messaggio += line + "\n";
         }
         System.out.println("\n");
     }
@@ -86,12 +88,24 @@ public class gestoreAcquisti {
     //ci permette di visualizzare il vettore contenente tutti i prodotti acquistati
     public void getAcquisti() throws IOException {
         aggiornamentoAcqArray();
-        System.out.println("email , indirizzo , codCarta , codiceProdotto , quantita , spesa");
+        System.out.println("indirizzo , codCarta , codiceProdotto , quantita , spesa");
         for(int i=0; i<(vettore.size()); i++)
         {
             System.out.println(vettore.get(i).toString());
         }
         System.out.println("");
+    }
+    
+    public String getMessaggio()
+    {
+        return this.messaggio;
+    }
+    
+    public void svuotaFile() throws IOException
+    {
+        BufferedWriter br = new BufferedWriter(new FileWriter("prodottiAcquistati.csv"));
+        br.write("indirizzo , codCarta , codiceProdotto , quantita , spesa"); 
+        br.close();
     }
     
     
