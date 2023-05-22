@@ -20,3 +20,6 @@ Obbiettivi:
 - Creare una GUI semplice e intuitiva. ✓
 - Creare il diagramma delle classi: ✓
 
+Problematiche:
+- Registrazione,
+- Aggiornamento dei prodotti disponibili tramite amministratore,
