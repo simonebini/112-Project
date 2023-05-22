@@ -17,9 +17,9 @@ Obbiettivi:
 - Organizzare in modo efficente i package: ✓
 - Aggiungere i controlli per i campi di input da parte dell'utente: ✓
 - Implementare la lettura da file: ✓
-- Creare una GUI semplice e intuitiva. ✓
+- Creare una GUI semplice e intuitiva: ✓
 - Creare il diagramma delle classi: ✓
 
 Problematiche:
-- Registrazione,
-- Aggiornamento dei prodotti disponibili tramite amministratore,
+- Registrazione: X
+- Aggiornamento dei prodotti disponibili tramite amministratore: X
