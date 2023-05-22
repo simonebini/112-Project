@@ -1,7 +1,7 @@
-# Ammuniton
-Ammuniton - Simone Bini, Davide Padurean
+# Ammunation
+Ammunation - Simone Bini, Davide Padurean
 
-Questo progetto consiste nello sviluppo di un negozio di armi online denominato "Ammuniton" che permette all'utente di scegliere tra diverse opzioni di interazione (acquistare un nuovo prodotto, visualizza i prodotti che sono stati acquistati e visualizzare i prodotti che si possono ancora acquistare).
+Questo progetto consiste nello sviluppo di un negozio di armi online denominato "Ammunation" che permette all'utente di scegliere tra diverse opzioni di interazione (acquistare un nuovo prodotto, visualizza i prodotti che sono stati acquistati e visualizzare i prodotti che si possono ancora acquistare).
 
 In primis viene richiesto all'utente di effettuare un login per tenere traccia dei suoi acquisti verificando inoltre di avere un'età maggiore di 20 anni.
 
